@@ -6,6 +6,7 @@ export default class App extends React.Component {
             <div style={{textAlign: 'center'}}>
                 <h1 className="title" >Hello World</h1>
                 <img src="img/dog.jpg" alt=""/>
-            </div>);
+            </div>
+        );
     }
 }
