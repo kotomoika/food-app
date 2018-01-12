@@ -1,0 +1,49 @@
+.header
+  size(100%, auto)
+  flex-mix(row wrap)
+  background-color: alpha($global.color.black, 50%)
+
+  &__title
+    margin 0
+    padding 0 20px
+    color: $global.color.white
+    set-fslh(24px, 24px)
+    box-sizing border-box
+
+  &__brands
+    margin 0
+    padding 0
+    size(100%, auto)
+    flex-mix(row wrap)
+
+  &__item
+    padding 20px 0
+    size(300px, auto)
+    flex-mix()
+    box-sizing border-box
+    cursor pointer
+    transition all .2s linear
+
+    &:hover
+      background-color: alpha($global.color.white, .20)
+
+      .header__item-title
+        animation: Letters 1s linear infinite
+
+  &__item-title
+    margin 0
+    set-fslh(26px, 28px)
+    color: $global.color.white
+
+  &__item-descr
+    margin 0
+    padding 8px 0
+    set-fslh(14px, 16px)
+    box-sizing border-box
+    color: $global.color.white
+
+  &__item-img
+    size(150px, auto)
+    border-radius 20px
+
+

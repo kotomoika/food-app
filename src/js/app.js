@@ -1,2 +1,2 @@
-import '../css/main.styl';
-import './react/reactApp.js';
+import './react/index.js';
+import '../css/styles.styl';

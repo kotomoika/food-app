@@ -1,0 +1,45 @@
+.util
+
+  $gap = 4
+
+  sizes = xxs $gap
+          ,xs $gap * 2
+          ,s  $gap * 3
+          ,m  $gap * 4
+          ,l  $gap * 5
+         ,xl  $gap * 6
+         ,xxl $gap * 7
+
+  for size in sizes
+    value = unit(size[1], px)
+
+    /* -----------------------------------
+      Margin & Padding helpers (uses size)
+    ----------------------------------- */
+
+    margin-types = m   margin
+                  ,mx  margin-x
+                  ,my  margin-y
+                  ,mt  margin-top
+                  ,mr  margin-right
+                  ,mb  margin-bottom
+                  ,ml  margin-left
+
+
+    padding-types = p   padding
+                   ,px  padding-x
+                   ,py  padding-y
+                   ,pt  padding-top
+                   ,pr  padding-right
+                   ,pb  padding-bottom
+                   ,pl  padding-left
+
+
+    for type in margin-types
+      &-{type[0]}--{size[0]}
+        {type[1]}: value
+
+
+    //for type in padding-types
+    //  &-{type[0]}--{size[0]}
+    //    {type[1]}: value

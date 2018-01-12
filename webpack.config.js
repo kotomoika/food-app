@@ -2,6 +2,8 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 var extractPlugin = new ExtractTextPlugin({
     filename: 'main.css'
@@ -18,12 +20,12 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                exclude: /node_modules/,
+                exclude: [/node_modules/],
                 use: [
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['es2015']
+                            presets: ['es2015', 'react']
                         }
                     }
                 ]
@@ -31,12 +33,37 @@ module.exports = {
             {
                 test: /\.styl$/,
                 use: extractPlugin.extract({
-                    use: ['css-loader', 'stylus-loader']
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'postcss-loader', 'stylus-loader']
                 })
             },
             {
                 test: /\.html$/,
                 use: ['html-loader']
+            },
+            {
+                test: /\.svg$/,
+                use: [
+                    {
+                        loader: 'svg-sprite-loader',
+                        options: {
+                            spriteFilename: 'icons-sprite.svg'
+                        }
+                    },
+                    {
+                        loader: 'svg-fill-loader'
+                    },
+                    {
+                        loader: 'svgo-loader',
+                        options: {
+                            plugins: [
+                                { removeTitle: true },
+                                { convertColors: { shorthex: false } },
+                                { convertPathData: false }
+                            ]
+                        }
+                    }
+                ]
             },
             {
                 test: /\.(jpg|png)$/,
@@ -48,6 +75,9 @@ module.exports = {
                             outputPath: 'img/',
                             publicPath: 'img/'
                         }
+                    },
+                    {
+                        loader: 'image-webpack-loader'
                     }
                 ]
             }
@@ -58,6 +88,12 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'src/index.html'
         }),
-        new CleanWebpackPlugin(['dist'])
+        new CleanWebpackPlugin(['dist']),
+        new CopyWebpackPlugin([
+            { from: 'src/img', to: 'raw-img' },
+            { from: 'src/svg', to: 'raw-svg' },
+            { from: 'src/fonts', to: 'fonts' },
+        ]),
+        new SpriteLoaderPlugin()
     ]
 };
