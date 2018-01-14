@@ -8,13 +8,50 @@
   margin 0
   padding 0
   size(100%, auto)
-  flex-mix(row wrap, flex-start)
+  flex-mix(row wrap)
 
   &__item
     margin 10px
     padding 0
-    size(200px)
+    size(200px, 40px)
     flex-mix()
     background-color: $global.color.s-sky
     box-sizing border-box
     cursor pointer
+    transition all .3s
+
+    &:active
+    &:focus
+      transform scale(.8)
+      background-color: alpha($global.color.s-sky, 40%)
+
+.detailed-category
+  overflow-x scroll
+  size(100%, auto)
+  flex-mix(row nowrap, flex-start)
+
+  &__item
+    margin 0 20px
+    size(350px)
+    flex-mix(, flex-start)
+    flex-shrink 0
+    background-color: $global.color.black
+    border-radius 10px
+
+  &__img
+    size(100%, auto)
+
+  &__p-name
+    margin 0
+    color: $global.color.twitter
+    set-fslh(2em, normal)
+
+  &__p-price
+    margin 0
+    color: $global.color.m-green
+    set-fslh(2em, normal)
+
+  &__p-descr
+    margin 0
+    color: $global.color.twitter
+    set-fslh(1.5em, normal)

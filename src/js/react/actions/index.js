@@ -4,3 +4,12 @@ export const selectBrand = (brand) => {
         payload: brand
     }
 };
+
+export const selectCategory = (category) => {
+    return {
+        type: "CATEGORY_SELECTED",
+        payload: category
+    }
+};
+
+

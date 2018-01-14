@@ -1,12 +1,17 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+// Action
+import {selectCategory} from '../actions/index';
 
 class MenuList extends React.Component {
 
     renderItems() {
-        if(!this.props.childrens) {
+        console.log("Items", this.props.itemsData);
+        if(!this.props.itemsData) {
            return <li className="menu-list__item menu-list__item--error">Oops! There is no list...</li>
         } else {
-           return Object.keys(this.props.childrens[0]).map(item => <li className="menu-list__item" key={item}>{item}</li>)
+           return this.props.itemsData.map(item => <li className="menu-list__item" onClick={() => this.props.selectCategory(item)} key={item.category}>{item.category}</li>)
         }
     }
 
@@ -19,4 +24,14 @@ class MenuList extends React.Component {
     }
 }
 
-export default MenuList;
+function mapStateToProps(state) {
+    return {
+        activeFoodBrand: state.activeBrand
+    }
+}
+
+function matchDispatchToProps(dispatch) {
+    return bindActionCreators({selectCategory: selectCategory}, dispatch)
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(MenuList);
