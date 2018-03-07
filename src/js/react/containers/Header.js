@@ -3,18 +3,35 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 // Action
 import {selectBrand} from '../actions/index';
+import store from '../index.js';
+
+const Brand = (props) => {
+  return (
+    <li
+      className={props.active ? "header__item active" : "header__item"}
+      onClick={props.showCategories}>
+        <h1 className="header__item-title">{props.name}</h1>
+        <p className="header__item-descr">{props.description}</p>
+        <img className="header__item-img" src={props.logo}/>
+    </li>
+  );
+};
 
 class Header extends React.Component {
-
     // Maping props from state into items
     addBrands() {
         return this.props.foodBrands.map((item) => {
+            let active = store.getState().activeBrand
+                       ? store.getState().activeBrand.id == item.id
+                       : null;
             return (
-                <li className="header__item" key={item.id} onClick={() => this.props.selectBrand(item)}>
-                    <h1 className="header__item-title">{item.name}</h1>
-                    <p className="header__item-descr">{item.description}</p>
-                    <img className="header__item-img" src={item.logo}/>
-                </li>
+              <Brand
+                active={active}
+                key={item.id}
+                showCategories={() => this.props.selectBrand(item)}
+                name={item.name}
+                description={item.description}
+                logo={item.logo} />
             );
         });
     }

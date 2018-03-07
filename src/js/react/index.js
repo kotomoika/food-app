@@ -14,6 +14,7 @@ import AppContainer from './components/AppContainer';
 
 // Redux (Big Master Object). Creating Store
 const store = createStore(allReducers, devToolsEnhancer());
+export default store;
 
 // DOM render
 ReactDOM.render(

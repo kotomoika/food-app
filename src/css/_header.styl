@@ -30,6 +30,9 @@
       .header__item-title
         animation: Letters 1s linear infinite
 
+    &.active
+      background-color: alpha($global.color.white, .20)
+
   &__item-title
     margin 0
     set-fslh(26px, 28px)
@@ -45,5 +48,3 @@
   &__item-img
     size(150px, auto)
     border-radius 20px
-
-

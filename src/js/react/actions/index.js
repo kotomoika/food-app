@@ -11,5 +11,3 @@ export const selectCategory = (category) => {
         payload: category
     }
 };
-
-
