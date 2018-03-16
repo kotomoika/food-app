@@ -2,7 +2,7 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+// var CopyWebpackPlugin = require('copy-webpack-plugin');
 var SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 var extractPlugin = new ExtractTextPlugin({
@@ -89,11 +89,11 @@ module.exports = {
             template: 'src/index.html'
         }),
         new CleanWebpackPlugin(['dist']),
-        new CopyWebpackPlugin([
-            { from: 'src/img', to: 'raw-img' },
-            { from: 'src/svg', to: 'raw-svg' },
-            { from: 'src/fonts', to: 'fonts' },
-        ]),
+        // new CopyWebpackPlugin([
+        //     { from: 'src/img', to: 'raw-img' },
+        //     { from: 'src/svg', to: 'raw-svg' },
+        //     { from: 'src/fonts', to: 'fonts' },
+        // ]),
         new SpriteLoaderPlugin()
     ]
 };
