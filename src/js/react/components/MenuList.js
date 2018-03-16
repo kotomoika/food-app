@@ -1,8 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 // Action
-import {selectCategory} from '../actions/index';
+import { selectCategory } from '../actions/index';
 
 class MenuList extends React.Component {
 

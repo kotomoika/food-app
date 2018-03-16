@@ -1,8 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 // Action
-import {selectBrand} from '../actions/index';
+import { selectBrand, selectCategory } from '../actions/index';
 import store from '../index.js';
 
 const Brand = (props) => {
@@ -28,7 +28,10 @@ class Header extends React.Component {
               <Brand
                 active={active}
                 key={item.id}
-                showCategories={() => this.props.selectBrand(item)}
+                showCategories={() => {
+                  this.props.selectBrand(item);
+                  this.props.selectCategory(null);
+                }}
                 name={item.name}
                 description={item.description}
                 logo={item.logo} />
@@ -55,8 +58,11 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-    // selectBrand is a prop
-    return bindActionCreators({selectBrand: selectBrand}, dispatch)
+    // selectBrand, selectCategory are props
+    return bindActionCreators({
+      selectBrand: selectBrand,
+      selectCategory: selectCategory
+    }, dispatch)
 }
 
 // Connecting Main Storage with Component
